@@ -1,0 +1,7 @@
+.hovercursor{
+  cursor: pointer;
+}
+
+a:visited{
+  color: inherit;
+}

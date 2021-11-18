@@ -1,0 +1,89 @@
+ <!-- STRAT NAVBAR -->
+ <nav class="navbar navbar-expand-lg fixed-top navbar-white navbar-custom sticky sticky-dark" id="navbar">
+   <div class="container">
+     <!-- LOGO -->
+     <a class="navbar-brand logo text-uppercase" href="/">
+       Dorsin
+     </a>
+     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+       (click)="toggleMenu()" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+       <i class="mdi mdi-menu"></i>
+     </button>
+     <div class="collapse navbar-collapse" id="navbarCollapse">
+       <ul class="navbar-nav navbar-center" id="mySidenav">
+         <li class="nav-item" [ngClass]="{'active':currentSection === 'home'}">
+           <a [ngxScrollTo]="'#home'" href="javascript: void(0);" class="nav-link">Home</a>
+         </li>
+         <li class="nav-item" [ngClass]="{'active':currentSection === 'services'}">
+           <a [ngxScrollTo]="'#services'" href="javascript: void(0);" class="nav-link">Services</a>
+         </li>
+         <li class="nav-item" [ngClass]="{'active':currentSection === 'features'}">
+           <a [ngxScrollTo]="'#features'" href="javascript: void(0);" class="nav-link">Features</a>
+         </li>
+         <li class="nav-item" [ngClass]="{'active':currentSection === 'pricing'}">
+           <a [ngxScrollTo]="'#pricing'" href="javascript: void(0);" class="nav-link">Pricing</a>
+         </li>
+         <li class="nav-item" [ngClass]="{'active':currentSection === 'team'}">
+           <a [ngxScrollTo]="'#team'" href="javascript: void(0);" class="nav-link">Team</a>
+         </li>
+         <li class="nav-item" [ngClass]="{'active':currentSection === 'blog'}">
+           <a [ngxScrollTo]="'#blog'" href="javascript: void(0);" class="nav-link">Blog</a>
+         </li>
+         <li class="nav-item" [ngClass]="{'active':currentSection === 'contact'}">
+           <a [ngxScrollTo]="'#contact'" href="javascript: void(0);" class="nav-link">Contact</a>
+         </li>
+       </ul>
+       <div class="nav-button ml-auto">
+         <ul class="nav navbar-nav navbar-right">
+           <li>
+             <button type="button" class="btn btn-custom navbar-btn btn-rounded">Try it
+               Free</button>
+           </li>
+         </ul>
+       </div>
+     </div>
+   </div>
+ </nav>
+ <!-- END NAVBAR -->
+ <!--START HOME-->
+ <section class="section bg-home home-half home-registration" id="home">
+   <div class="bg-overlay"></div>
+   <div class="display-table">
+     <div class="display-table-cell">
+       <div class="container">
+         <div class="row vertical-content">
+           <div class="col-lg-7 text-white text-left margin-t-30">
+             <h1 class="home-title">We help startups launch their products</h1>
+             <p class="padding-t-15 home-desc home-subtitle-width-100">Etiam sed.Interdum consequat proin vestibulum
+               class at a euismod mus luctus quam.Lorem ipsum dolor sit amet, consectetur adipisicing eli.</p>
+             <a href="javascript: void(0);" class="btn btn-custom margin-t-30">Get Started <i
+                 class="mdi mdi-arrow-right"></i></a>
+           </div>
+           <div class="col-lg-4 offset-lg-1 margin-t-30">
+             <div class="home-registration-form bg-white">
+               <h4 class="form-heading text-center mt-2">Get 30 day FREE Trial</h4>
+               <form class="registration-form" id="registration-form">
+                 <input type="text" id="exampleInputName1" class="form-control registration-input-box"
+                   placeholder="Name">
+                 <input type="email" id="exampleInputEmail1" class="form-control registration-input-box"
+                   placeholder="Email">
+                 <textarea class="form-control registration-textarea-box" rows="4" placeholder="Message"></textarea>
+                 <button class="btn btn-custom home-btn-width">Send Detail</button>
+               </form>
+             </div>
+           </div>
+         </div>
+       </div>
+     </div>
+   </div>
+ </section>
+ <!--END HOME-->
+ <div appScrollspy [spiedTags]="['SECTION']" (sectionChange)="onSectionChange($event)">
+   <app-services></app-services>
+   <app-features></app-features>
+   <app-pricing></app-pricing>
+   <app-team></app-team>
+   <app-blog></app-blog>
+   <app-contact></app-contact>
+   <app-footer></app-footer>
+ </div>

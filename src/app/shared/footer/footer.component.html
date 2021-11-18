@@ -1,0 +1,108 @@
+<!--START FOOTER-->
+<footer class="footer" (window:scroll)="windowScroll()" id="footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-3 margin-t-20">
+        <h4>LEMMATRON</h4>
+        <div class="text-muted margin-t-20">
+          <ul class="list-unstyled footer-list">
+            <li><a [ngxScrollTo]="'#home'" href="javascript: void(0);">Home</a></li>
+            <li><a [ngxScrollTo]="'#services'" href="javascript: void(0);">Services</a></li>
+            <li><a [ngxScrollTo]="'#features'" href="javascript: void(0);">Features</a></li>
+            <li><a [ngxScrollTo]="'#team'" href="javascript: void(0);">Team</a></li>
+            <li><a [ngxScrollTo]="'#contact'" href="javascript: void(0);">Contact</a></li>
+            <!-- <li><a href="javascript: void(0);">Careers</a></li>
+            <li><a href="javascript: void(0);">Contact us</a></li> -->
+          </ul>
+        </div>
+      </div>
+
+      <div class="col-lg-3 margin-t-20">
+        <!-- <h4>Support</h4>
+        <div class="text-muted margin-t-20">
+          <ul class="list-unstyled footer-list">
+            <li><a href="">FAQ</a></li>
+            <li><a href="">Contact</a></li>
+            <li><a href="">Disscusion</a></li>
+          </ul>
+        </div> -->
+      </div>
+
+      <div class="col-lg-3 margin-t-20">
+        <!-- <h4>Information</h4>
+        <div class="text-muted margin-t-20">
+          <ul class="list-unstyled footer-list">
+            <li><a href="javascript: void(0);">Terms & Condition</a></li>
+            <li><a href="javascript: void(0);">About us</a></li>
+            <li><a href="javascript: void(0);">Jobs</a></li>
+            <li><a href="javascript: void(0);">Bookmarks</a></li>
+          </ul>
+        </div> -->
+      </div>
+
+      <div class="col-lg-3 margin-t-20">
+        <h4>Subscribe</h4>
+        <div class="text-muted margin-t-20">
+          <p>Subscribe to our newsletter so you don't miss any updates.</p>
+        </div>
+        <form class="form subscribe" data-netlify="true">
+          <input placeholder="Email" class="form-control" required>
+          <a href="javascript: void(0);" class="submit"><i class="pe-7s-paper-plane"></i></a>
+        </form>
+      </div>
+    </div>
+  </div>
+</footer>
+<!--END FOOTER-->
+
+<!--START FOOTER ALTER-->
+<div class="footer-alt">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="float-left pull-none ">
+          <p class="copy-rights text-muted">{{ cur_year }} © Lemmatron </p>
+        </div>
+        <!-- <div class="float-right pull-none ">
+          <img src="assets/images/payment.png" alt="payment-img" height="36" />
+        </div> -->
+        <div class="clearfix"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--START FOOTER ALTER-->
+<div id="style-switcher" [style]="isVisible ? 'left: 0px' : 'left: -189px'">
+  <div>
+    <h3>Select your color </h3>
+    <ul class="pattern">
+      <li>
+        <a (click)="setTheme('red')" class="color1" routerLink="#"></a>
+      </li>
+      <li>
+        <a class="color2" (click)="setTheme('green')" routerLink="#"></a>
+      </li>
+      <li>
+        <a class="color3" (click)="setTheme('pink')" routerLink="#"></a>
+      </li>
+      <li>
+        <a class="color4" (click)="setTheme('cyan')" routerLink="#"></a>
+      </li>
+      <li>
+        <a class="color5" (click)="setTheme('purple')" routerLink="#"></a>
+      </li>
+      <li>
+        <a class="color6" (click)="setTheme('blue')" routerLink="#"></a>
+      </li>
+      <li>
+        <a class="color7" (click)="setTheme('orange')" routerLink="#"></a>
+      </li>
+      <li>
+        <a class="color8" (click)="setTheme('yellow')" routerLink="#"></a>
+      </li>
+    </ul>
+  </div>
+  <div class="bottom">
+    <a routerLink="#" class="settings" (click)="toggleSwitcher()"><i class="mdi mdi-settings mdi-spin"></i></a>
+  </div>
+</div>
