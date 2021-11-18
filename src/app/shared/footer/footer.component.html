@@ -20,39 +20,47 @@
       <div class="col-lg-3 margin-t-20">
         <!-- <h4>Support</h4>
         <div class="text-muted margin-t-20">
-          <ul class="list-unstyled footer-list">
-            <li><a href="">FAQ</a></li>
-            <li><a href="">Contact</a></li>
-            <li><a href="">Disscusion</a></li>
-          </ul>
-        </div> -->
-      </div>
-
-      <div class="col-lg-3 margin-t-20">
-        <!-- <h4>Information</h4>
-        <div class="text-muted margin-t-20">
-          <ul class="list-unstyled footer-list">
-            <li><a href="javascript: void(0);">Terms & Condition</a></li>
-            <li><a href="javascript: void(0);">About us</a></li>
-            <li><a href="javascript: void(0);">Jobs</a></li>
-            <li><a href="javascript: void(0);">Bookmarks</a></li>
-          </ul>
-        </div> -->
-      </div>
-
-      <div class="col-lg-3 margin-t-20">
-        <h4>Subscribe</h4>
-        <div class="text-muted margin-t-20">
-          <p>Subscribe to our newsletter so you don't miss any updates.</p>
-        </div>
-        <form name="newsletter" class="form subscribe text-right" netlify >
-          <input name="email" placeholder="Email" class="form-control" required>
-          <button class="btn btn-custom  btn-rounded pe-7s-paper-plane" type="submit"></button>
-          <!-- <a href="javascript: void(0);" class="submit"><i class="pe-7s-paper-plane"></i></a> -->
-        </form>
-      </div>
-    </div>
+        <ul class="list-unstyled footer-list">
+        <li><a href="">FAQ</a></li>
+        <li><a href="">Contact</a></li>
+        <li><a href="">Disscusion</a></li>
+      </ul>
+    </div> -->
   </div>
+
+  <div class="col-lg-3 margin-t-20">
+    <!-- <h4>Information</h4>
+    <div class="text-muted margin-t-20">
+    <ul class="list-unstyled footer-list">
+    <li><a href="javascript: void(0);">Terms & Condition</a></li>
+    <li><a href="javascript: void(0);">About us</a></li>
+    <li><a href="javascript: void(0);">Jobs</a></li>
+    <li><a href="javascript: void(0);">Bookmarks</a></li>
+  </ul>
+</div> -->
+</div>
+
+<div class="col-lg-3 margin-t-20">
+  <h4>Subscribe</h4>
+  <div class="text-muted margin-t-20">
+    <p>Subscribe to our newsletter so you don't miss any updates.</p>
+  </div>
+  <form name="newsletter" class="form subscribe text-right" netlify >
+    <input name="email" placeholder="Email" class="form-control" required>
+    <button class="btn btn-custom  btn-rounded pe-7s-paper-plane" type="submit"></button>
+    <!-- <a href="javascript: void(0);" class="submit"><i class="pe-7s-paper-plane"></i></a> -->
+  </form>
+</div>
+<form name="contact" netlify>
+  <p>
+    <label>Email <input type="email" name="email" /></label>
+  </p>
+  <p>
+    <button type="submit">Send</button>
+  </p>
+</form>
+</div>
+</div>
 </footer>
 <!--END FOOTER-->
 
@@ -65,12 +73,12 @@
           <p class="copy-rights text-muted">{{ cur_year }} © Lemmatron </p>
         </div>
         <!-- <div class="float-right pull-none ">
-          <img src="assets/images/payment.png" alt="payment-img" height="36" />
-        </div> -->
-        <div class="clearfix"></div>
-      </div>
+        <img src="assets/images/payment.png" alt="payment-img" height="36" />
+      </div> -->
+      <div class="clearfix"></div>
     </div>
   </div>
+</div>
 </div>
 <!--START FOOTER ALTER-->
 <div id="style-switcher" [style]="isVisible ? 'left: 0px' : 'left: -189px'">
