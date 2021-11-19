@@ -18,7 +18,7 @@ export class NetlifyFormsService {
   submitFeedback(feedback: Feedback): Observable<string> {
     const entry = new HttpParams({
       fromObject: {
-        "form-name": "newsletter",
+        "form-name": "contact",
       },
     });
 
