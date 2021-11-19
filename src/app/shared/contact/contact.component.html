@@ -25,41 +25,73 @@
           <div class="col-lg-8">
             <div class="custom-form mt-4 pt-4">
               <div id="message"></div>
-              <form name="contact-us" method="post" onsubmit="submitForm(name)" name="contact-form" id="contact-form" netlify>
+              <div class="alert alert-success" role="alert" *ngIf="formSuccess">
+                Thank you for your message. Lemmatron highly values your opinion, and the team will try to get back to you as soon as possible.
+              </div>
+
+              <form *ngIf="!formSuccess" name="contact-us" method="post" [formGroup]="form" (ngSubmit)="onSubmit()" name="contact-form" id="contact-form" netlify>
                 <div class="row">
                   <div class="col-lg-6">
                     <div class="form-group mt-2">
-                      <input name="name" id="name" type="text" class="form-control" placeholder="Your name*" required>
+                      <input name="name" id="name" type="text" class="form-control" formControlName="name" placeholder="Your name*" [ngClass]="{ 'is-invalid': submitted && f.name.errors }" >
+                      <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                        <div *ngIf="f.name.errors.required">First Name is required</div>
+                        <div *ngIf="f.name.errors.maxlength">Name must not exceed 60 characters</div>
+                      </div>
+
                     </div>
                   </div>
                   <div class="col-lg-6">
                     <div class="form-group mt-2">
-                      <input name="email" id="email" type="email" class="form-control" placeholder="Your email*" required>
+                      <input name="email" id="email" type="email" class="form-control" formControlName="email" placeholder="Your email*" [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+                      <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                        <div *ngIf="f.email.errors.required">Email is required</div>
+                        <div *ngIf="f.email.errors.pattern">Email must be valid</div>
+                      </div>
+
                     </div>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-lg-12">
                     <div class="form-group mt-2">
-                      <input name="subject" type="text" class="form-control" id="subject" placeholder="Your Subject.." required />
+                      <input name="subject" type="text" class="form-control" id="subject" formControlName="subject" placeholder="Your Subject.." [ngClass]="{ 'is-invalid': submitted && f.subject.errors }" />
+                      <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                        <div *ngIf="f.subject.errors.required">Subject is required</div>
+                        <div *ngIf="f.subject.errors.maxlength">Subject must not exceed 15 characters</div>
+                      </div>
+
                     </div>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-lg-12">
                     <div class="form-group mt-2">
-                      <textarea name="comments" id="comments" rows="4" class="form-control"
-                      placeholder="Your message..." required></textarea>
+                      <textarea name="message" id="comments" formControlName="message" rows="4" class="form-control"
+                      placeholder="Your message..." [ngClass]="{ 'is-invalid': submitted && f.message.errors }"></textarea>
+                      <div *ngIf="submitted && f.message.errors" class="invalid-feedback">
+                        <div *ngIf="f.message.errors.required">Message is required</div>
+                        <div *ngIf="f.message.errors.maxlength">Message must not exceed 100 characters</div>
+                      </div>
+
                     </div>
                   </div>
                 </div>
                 <div class="row">
                   <div class="col-lg-12 text-right">
-                    <button type="submit" id="submit" class="submitBnt btn btn-custom" >Send Message</button>
+                    <button type="submit" id="submit" class="submitBnt btn btn-custom">Send Message</button>
                     <div id="simple-msg"></div>
                   </div>
                 </div>
               </form>
+
+
+
+
+
+
+
+
             </div>
           </div>
         </div>

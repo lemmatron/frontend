@@ -8,6 +8,7 @@ import { NetlifyFormsService } from "../../netlify-forms.service";
 import { Subscription } from 'rxjs';
 import { NgForm }   from '@angular/forms';
 import { Newsletter } from '../../interface/Newsletter';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 
 @Component({
@@ -17,8 +18,8 @@ import { Newsletter } from '../../interface/Newsletter';
 })
 
 /**
- * Contact-component
- */
+* Contact-component
+*/
 export class ContactComponent {
   name: "";
   email: "";
@@ -28,19 +29,44 @@ export class ContactComponent {
   loading: boolean;
   emailSent: boolean;
   emailFailed: boolean;
+  form: FormGroup;
+  formSuccess= false;
+
+  submitted = false;
 
   constructor(
     private http: HttpClient,
-    private netlifyForms: NetlifyFormsService
+    private netlifyForms: NetlifyFormsService,
+    private formBuilder: FormBuilder
 
   ) { }
   private formStatusSub: Subscription;
+
+
+
+  ngOnInit(): void {
+    this.form = this.formBuilder.group({
+      name: ['', [Validators.required,Validators.maxLength(60)]],
+      email: ['', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$")]],
+      subject: ['', [Validators.required, Validators.maxLength(15)]],
+      message: ['', [Validators.required, Validators.maxLength(100)]]
+    });
+  }
+
+
+
+
   onSubmit(){
+    this.submitted = true;
+    if (this.form.invalid) {
+      return;
+    }
+
     const data = {
-      name: "sangam",
-      email: "sangamlimbu52@gmail.com",
-      subject: "test",
-      message: "Hello"
+      name: this.form.value.name,
+      email: this.form.value.email,
+      subject: this.form.value.subject,
+      message: this.form.value.message
     };
 
     const entry = {
@@ -51,6 +77,7 @@ export class ContactComponent {
       (res) => {
         this.loading = false;
         this.emailSent = true;
+        this.formSuccess = true;
         setTimeout(() => {
           this.emailSent = false;
         }, 10000);
@@ -58,19 +85,31 @@ export class ContactComponent {
       },
       (err) => {
         this.loading = false;
+        this.formSuccess = false;
         this.emailFailed = true;
         setTimeout(() => {
           this.emailFailed = false;
         }, 10000);
       }
     );
-
-
   }
 
-  ngOnInit(): void {
 
-  }
+  // convenience getter for easy access to form fields
+  get f() { return this.form.controls; }
+
+
+  isFieldValid(field: string) {
+  return !this.form.get(field).valid && this.form.get(field).touched;
+}
+
+displayFieldCss(field: string) {
+  return {
+    'has-error': this.isFieldValid(field),
+    'has-feedback': this.isFieldValid(field)
+  };
+}
+
 
 
 }

@@ -47,8 +47,17 @@
   <div class="text-muted margin-t-20">
     <p>Subscribe to our newsletter so you don't miss any updates.</p>
   </div>
-  <form name="newsletter" method="POST" (submit)="onSubmit(email.value)" netlify>
-    <input #email name="email" class="form-control" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" placeholder="Email" required>
+  <div class="alert alert-success" role="alert" *ngIf="formSuccess">
+    Thank you for subscribing.
+  </div>
+
+  <form *ngIf="!formSuccess" [formGroup]="form" name="newsletter" (ngSubmit)="onSubmit()" netlify>
+    <input name="email" formControlName="email" class="form-control" type="email" placeholder="Email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+    <div *ngIf="submitted && f.email.errors" class="invalid-feedback mb-2">
+      <div *ngIf="f.email.errors.required">Email is required</div>
+      <div *ngIf="f.email.errors.pattern">Email must be valid</div>
+    </div>
+
     <!-- <input type="hidden" name="form-name" value="newsletter" /> -->
     <!-- <button class="btn btn-custom  btn-rounded pe-7s-paper-plane" type="submit" (click)="onSubmit(email.value)"></button> -->
     <button type="submit" class=" btn btn-custom">Subscribe</button>

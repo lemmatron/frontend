@@ -7,6 +7,7 @@ import { NetlifyFormsService } from "../../netlify-forms.service";
 import { Subscription } from 'rxjs';
 import { NgForm }   from '@angular/forms';
 import { Newsletter } from '../../interface/Newsletter';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-footer',
@@ -26,20 +27,35 @@ export class FooterComponent implements OnInit {
   loading: boolean;
   emailSent: boolean;
   emailFailed: boolean;
+  form: FormGroup;
+  submitted = false;
+  formSuccess = false;
+
   constructor(
     private http: HttpClient,
-    private netlifyForms: NetlifyFormsService
+    private netlifyForms: NetlifyFormsService,
+    private formBuilder: FormBuilder,
+
   ) { }
 
   private formStatusSub: Subscription;
 
   ngOnInit(): void {
+    this.form = this.formBuilder.group({
+      email: ['', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$")]]
+  });
+}
 
-  }
+  onSubmit(){
+    this.submitted = true;
 
-  onSubmit(x){
+    // stop here if form is invalid
+    if (this.form.invalid) {
+      return;
+    }
+
     const data = {
-      email: x,
+      email: this.form.value.email,
     };
 
     const entry = {
@@ -50,6 +66,7 @@ export class FooterComponent implements OnInit {
       (res) => {
         this.loading = false;
         this.emailSent = true;
+        this.formSuccess = true;
         setTimeout(() => {
           this.emailSent = false;
         }, 10000);
@@ -58,6 +75,7 @@ export class FooterComponent implements OnInit {
       (err) => {
         this.loading = false;
         this.emailFailed = true;
+        this.formSuccess = true;
         setTimeout(() => {
           this.emailFailed = false;
         }, 10000);
@@ -67,6 +85,7 @@ export class FooterComponent implements OnInit {
 
   }
 
+  get f() { return this.form.controls; }
 
 
 
