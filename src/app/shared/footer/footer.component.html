@@ -48,7 +48,7 @@
     <p>Subscribe to our newsletter so you don't miss any updates.</p>
   </div>
   <form name="contact" method="POST" (submit)="onSubmit()" netlify>
-    <input name="email" type="email" placeholder="Email" class="" required>
+    <input name="email" type="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" placeholder="Email" class="" required>
     <!-- <input type="hidden" name="form-name" value="newsletter" /> -->
     <!-- <button class="btn btn-custom  btn-rounded pe-7s-paper-plane" type="submit" (click)="onSubmit(email.value)"></button> -->
     <button type="submit" >Subscribe</button>
