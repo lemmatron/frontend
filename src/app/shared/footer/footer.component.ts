@@ -41,12 +41,16 @@ export class FooterComponent implements OnInit {
   private formStatusSub: Subscription;
 
   ngOnInit(): void {
+
+    // Form validation
     this.form = this.formBuilder.group({
       email: ['', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$")]]
-  });
-}
+    });
+  }
 
+  // Submit form
   onSubmit(){
+    // Change form status
     this.submitted = true;
 
     // stop here if form is invalid
@@ -85,66 +89,13 @@ export class FooterComponent implements OnInit {
 
   }
 
+  // convenience getter for easy access to form fields
   get f() { return this.form.controls; }
 
 
-
-  //   const body = new HttpParams()
-  //   .set('form-name', 'newsletter')
-  //   .append('email', x)
-  //
-  //   this.http.post('/', body.toString(), {headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
-  // }
-  // )
-  // .pipe(
-  //     catchError(this.handleError('addHero', x))
-  //   );
-  // .pipe(catchError(this.handleError));
-  // console.log(x,body.toString());
-  // }
-  //
   ngOnDestroy() {
     this.formStatusSub ? this.formStatusSub.unsubscribe() : null;
   }
-
-
-
-  handleError(err: HttpErrorResponse) {
-    let errMsg = "";
-
-    if (err.error instanceof ErrorEvent) {
-      errMsg = `Client-side error: ${err.error.message}`;
-    } else {
-      errMsg = `Server-side error. Code: ${err.status}. Message: ${err.message}`;
-    }
-
-    return throwError(errMsg);
-  }
-
-
-
-
-
-
-
-  //   onSubmit(x){
-  //     const body = new HttpParams()
-  //     .set('form-name', 'newsletter')
-  //     .append('email', x)
-  //
-  //     this.http.post('/', body.toString(), {
-  //       headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
-  //     }
-  //   );
-  //   console.log(x,body.toString());
-  //   return false;
-  // }
-
-  // onSubmit(x){
-  //   // window.location.href='http://www.cnn.com'
-  //   console.log("Hello", x);
-  //   return false;
-  // }
 
   windowScroll() {
     const navbar = document.getElementById('footer');

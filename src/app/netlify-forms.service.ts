@@ -13,18 +13,25 @@ import { catchError } from "rxjs/operators";
 @Injectable({
   providedIn: "root",
 })
+
 export class NetlifyFormsService {
   constructor(private http: HttpClient) {}
 
+  // Service for contactus form
   submitContactUs(contactUs: ContactUs): Observable<string> {
     const entry = new HttpParams({
       fromObject: {
         "form-name": "contactus",
+        "name": contactUs.name,
+        "email": contactUs.email,
+        "subject": contactUs.subject,
+        "message": contactUs.message,
       },
     });
     return this.submitForm(entry);
   }
 
+  // Service for newsletter form
   submitNewsletter(newsletter: Newsletter): Observable<string> {
     const entry = new HttpParams({
       fromObject: {
@@ -35,6 +42,7 @@ export class NetlifyFormsService {
     return this.submitForm(entry);
   }
 
+  // Send form with post method
   private submitForm(entry: HttpParams): Observable<string> {
     return this.http
       .post("/", entry.toString(), {
@@ -44,6 +52,7 @@ export class NetlifyFormsService {
       .pipe(catchError(this.handleError));
   }
 
+  // Error handling
   private handleError(err: HttpErrorResponse) {
     let errMsg = "";
 
@@ -52,7 +61,6 @@ export class NetlifyFormsService {
     } else {
       errMsg = `Server-side error. Code: ${err.status}. Message: ${err.message}`;
     }
-
     return throwError(errMsg);
   }
 }

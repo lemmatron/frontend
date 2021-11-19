@@ -55,9 +55,12 @@ export class ContactComponent {
 
 
 
-
+  // Submit form
   onSubmit(){
+    //Change form status
     this.submitted = true;
+
+    // stop here if form is invalid
     if (this.form.invalid) {
       return;
     }
@@ -94,22 +97,7 @@ export class ContactComponent {
     );
   }
 
-
   // convenience getter for easy access to form fields
   get f() { return this.form.controls; }
-
-
-  isFieldValid(field: string) {
-  return !this.form.get(field).valid && this.form.get(field).touched;
-}
-
-displayFieldCss(field: string) {
-  return {
-    'has-error': this.isFieldValid(field),
-    'has-feedback': this.isFieldValid(field)
-  };
-}
-
-
 
 }
