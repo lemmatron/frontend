@@ -45,11 +45,24 @@
   <div class="text-muted margin-t-20">
     <p>Subscribe to our newsletter so you don't miss any updates.</p>
   </div>
-  <form name="newsletter" class="form subscribe text-right" netlify >
-    <input name="email" placeholder="Email" class="form-control" required>
-    <button class="btn btn-custom  btn-rounded pe-7s-paper-plane" type="submit"></button>
+  <form  name="newsletter" class="form subscribe text-right"  >
+    <input #email name="email" placeholder="Email" class="form-control" required>
+    <input type="hidden" name="newsletter" value="contact" /
+    <button class="btn btn-custom  btn-rounded pe-7s-paper-plane" type="submit" (click) = "onSubmit(email.value)"></button>
     <!-- <a href="javascript: void(0);" class="submit"><i class="pe-7s-paper-plane"></i></a> -->
   </form>
+
+  <form name="contact" netlify>
+  <p>
+    <label>Name <input type="text" name="name" /></label>
+  </p>
+  <p>
+    <label>Email <input type="email" name="email" /></label>
+  </p>
+  <p>
+    <button type="submit">Send</button>
+  </p>
+</form>
 </div>
 </div>
 </div>

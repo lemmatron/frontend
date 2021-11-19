@@ -12,8 +12,12 @@ export class ContactComponent {
 
   constructor() { }
 
+  submitForm(x){
+    console.log("hello");
+  }
 
   ngOnInit(): void {
+
   }
 
 }

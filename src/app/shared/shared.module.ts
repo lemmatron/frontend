@@ -10,13 +10,15 @@ import { BlogComponent } from './blog/blog.component';
 import { ContactComponent } from './contact/contact.component';
 import { ScrollspyDirective } from './scrollspy.directive';
 import { FooterComponent } from './footer/footer.component';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   // tslint:disable-next-line: max-line-length
   declarations: [ServicesComponent, PricingComponent, FeaturesComponent, TeamComponent, BlogComponent, ContactComponent, ScrollspyDirective, FooterComponent],
   imports: [
     CommonModule,
-    ScrollToModule.forRoot()
+    ScrollToModule.forRoot(),
+    HttpClientModule
   ],
   // tslint:disable-next-line: max-line-length
   exports: [ServicesComponent, PricingComponent, FeaturesComponent, TeamComponent, BlogComponent, ContactComponent, ScrollspyDirective, FooterComponent]

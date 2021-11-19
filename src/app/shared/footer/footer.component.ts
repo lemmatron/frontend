@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {HttpClientModule} from '@angular/common/http';
+import {HttpClient,HttpParams } from '@angular/common/http';
 
 @Component({
   selector: 'app-footer',
@@ -9,14 +11,28 @@ import { Component, OnInit } from '@angular/core';
  * Footer component
  */
 export class FooterComponent implements OnInit {
-
   isVisible = false;
   cur_year = new Date().getFullYear();
   currentSection = 'footer';
-  constructor() { }
+  constructor(private http: HttpClient ) { }
+
 
   ngOnInit(): void {
+
   }
+
+  onSubmit(x){
+    const body = new HttpParams()
+      .set('newsletter', 'contact')
+      .append('email', x);
+      this.http.post('/', body.toString(), {headers: { 'Content-Type': 'application/x-www-form-urlencoded' }})
+      .subscribe(
+        res => {"Thank you for subscribing to our newsletter."}
+      );
+    console.log(x,body);
+    return false;
+  }
+
 
   windowScroll() {
     const navbar = document.getElementById('footer');
@@ -43,4 +59,5 @@ export class FooterComponent implements OnInit {
   toggleSwitcher() {
     this.isVisible = !this.isVisible;
   }
+
 }
