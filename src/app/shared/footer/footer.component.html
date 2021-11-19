@@ -46,8 +46,8 @@
     <p>Subscribe to our newsletter so you don't miss any updates.</p>
   </div>
   <form name="newsletter" class="form subscribe text-right" netlify>
-    <input #email name="email" placeholder="Email" class="form-control" required>
-    <!-- <input type="hidden" name="form-name" value="newsletter" /> -->
+    <input #email name="email" type="email" placeholder="Email" class="form-control" required>
+    <input type="hidden" name="form-name" value="newsletter" />
     <button class="btn btn-custom  btn-rounded pe-7s-paper-plane" type="submit" (click)="onSubmit(email.value)"></button>
     <!-- <a href="javascript: void(0);" class="submit"><i class="pe-7s-paper-plane"></i></a> -->
   </form>

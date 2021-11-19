@@ -8,12 +8,13 @@ import {HttpClient,HttpParams } from '@angular/common/http';
   styleUrls: ['./footer.component.css']
 })
 /**
- * Footer component
- */
+* Footer component
+*/
 export class FooterComponent implements OnInit {
   isVisible = false;
   cur_year = new Date().getFullYear();
   currentSection = 'footer';
+
   constructor(private http: HttpClient ) { }
 
 
@@ -22,42 +23,44 @@ export class FooterComponent implements OnInit {
   }
 
   onSubmit(x){
-    const body = new HttpParams()
-      .set('form-name', 'newsletter')
-      .append('email', x);
-      this.http.post('/', body.toString(), {headers: { 'Content-Type': 'application/x-www-form-urlencoded' }})
-      .subscribe(
-        res => {"Thank you for subscribing to our newsletter."}
-      );
-    console.log(x,body);
-    return false;
-  }
+    const body = new HttpParams({ fromObject:{
+      'form-name': "newsletter",
+      'email': x,
+    }});
 
-
-  windowScroll() {
-    const navbar = document.getElementById('footer');
-    if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
-      navbar.style.backgroundColor = '#272a33';
-      navbar.style.padding = '10px';
+    this.http.post('/', body.toString(), {
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
     }
-    else {
-      navbar.style.backgroundColor = '';
-      navbar.style.padding = '20px';
-    }
-  }
+  );
+  console.log(x,body.toString());
+  return false;
+}
 
-  /**
-   * Onclick color change
-   * @param theme theme color
-   */
-  setTheme(theme) {
-    document
-      .getElementById('color-opt')
-      .setAttribute('href', 'assets/css/colors/' + theme + '.css');
-  }
 
-  toggleSwitcher() {
-    this.isVisible = !this.isVisible;
+windowScroll() {
+  const navbar = document.getElementById('footer');
+  if (document.body.scrollTop > 40 || document.documentElement.scrollTop > 40) {
+    navbar.style.backgroundColor = '#272a33';
+    navbar.style.padding = '10px';
   }
+  else {
+    navbar.style.backgroundColor = '';
+    navbar.style.padding = '20px';
+  }
+}
+
+/**
+* Onclick color change
+* @param theme theme color
+*/
+setTheme(theme) {
+  document
+  .getElementById('color-opt')
+  .setAttribute('href', 'assets/css/colors/' + theme + '.css');
+}
+
+toggleSwitcher() {
+  this.isVisible = !this.isVisible;
+}
 
 }
