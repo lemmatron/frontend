@@ -25,16 +25,38 @@
   <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
 
   <link rel="stylesheet" type="text/css" href="assets/css/colors/red.css" id="color-opt" />
-  
+
 </head>
 
 <body>
 
   <app-root></app-root>
 
-  <form name=”newsletter” netlify netlify-honeypot=”bot-field” hidden>
+  <form name=”newsletter” method="POST" netlify netlify-honeypot=”bot-field” hidden>
     <input type=”email” name=”email” />
   </form>
+
+
+  <form name="test" method="POST" data-netlify="true">
+  <p>
+    <label>Your Name: <input type="text" name="name" /></label>
+  </p>
+  <p>
+    <label>Your Email: <input type="email" name="email" /></label>
+  </p>
+  <p>
+    <label>Your Role: <select name="role[]" multiple>
+      <option value="leader">Leader</option>
+      <option value="follower">Follower</option>
+    </select></label>
+  </p>
+  <p>
+    <label>Message: <textarea name="message"></textarea></label>
+  </p>
+  <p>
+    <button type="submit">Send</button>
+  </p>
+</form>
 </body>
 
 </html>
