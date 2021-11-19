@@ -23,10 +23,9 @@ export class FooterComponent implements OnInit {
   }
 
   onSubmit(x){
-    const body = new HttpParams({ fromObject:{
-      'form-name': "newsletter",
-      'email': x,
-    }});
+    const body = new HttpParams()
+    .set('form-name', 'newsletter')
+    .append('email', x)
 
     this.http.post('/', body.toString(), {
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
