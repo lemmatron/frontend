@@ -3,6 +3,11 @@ import {HttpClientModule} from '@angular/common/http';
 import {HttpClient,HttpErrorResponse,HttpParams } from '@angular/common/http';
 import { Observable, throwError } from "rxjs";
 import { catchError } from "rxjs/operators";
+import { NetlifyFormsService } from "../../netlify-forms.service";
+import { Subscription } from 'rxjs';
+import { NgForm }   from '@angular/forms';
+import { Feedback } from '../../interface/feedback';
+
 @Component({
   selector: 'app-footer',
   templateUrl: './footer.component.html',
@@ -17,40 +22,90 @@ export class FooterComponent implements OnInit {
   currentSection = 'footer';
   success="";
 
-  constructor(private http: HttpClient ) { }
+  // name: "";
+  email: "sangam";
+  // phone: "";
+  // message: "";
+  subscribe: "";
+  loading: boolean;
+  emailSent: boolean;
+  emailFailed: boolean;
+  constructor(private http: HttpClient,
+    private netlifyForms: NetlifyFormsService ) { }
 
 
-  ngOnInit(): void {
+    private formStatusSub: Subscription;
 
-  }
 
-  onSubmit(x){
-    const body = new HttpParams()
-    .set('form-name', 'newsletter')
-    .append('email', x)
 
-    this.http.post('/', body.toString(), {headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+    ngOnInit(): void {
+
     }
-  )
-  // .pipe(
-  //     catchError(this.handleError('addHero', x))
-  //   );
-  .pipe(catchError(this.handleError));
-  console.log(x,body.toString());
+
+    onSubmit(){
+      const data = {
+        email: "sangam",
+      };
+
+      const entry = {
+        ...data,
+      } as Feedback;
+      console.log(data,entry);
+      this.formStatusSub = this.netlifyForms.submitFeedback(entry).subscribe(
+        (res) => {
+          this.loading = false;
+          this.emailSent = true;
+          setTimeout(() => {
+            this.emailSent = false;
+          }, 10000);
+          // contactForm.resetForm();
+        },
+        (err) => {
+          this.loading = false;
+          this.emailFailed = true;
+          setTimeout(() => {
+            this.emailFailed = false;
+          }, 10000);
+        }
+      );
+
+
+    }
+
+
+
+
+  //   const body = new HttpParams()
+  //   .set('form-name', 'newsletter')
+  //   .append('email', x)
+  //
+  //   this.http.post('/', body.toString(), {headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+  // }
+// )
+// .pipe(
+//     catchError(this.handleError('addHero', x))
+//   );
+// .pipe(catchError(this.handleError));
+// console.log(x,body.toString());
+// }
+//
+ngOnDestroy() {
+  this.formStatusSub ? this.formStatusSub.unsubscribe() : null;
 }
 
 
-  handleError(err: HttpErrorResponse) {
-    let errMsg = "";
 
-    if (err.error instanceof ErrorEvent) {
-      errMsg = `Client-side error: ${err.error.message}`;
-    } else {
-      errMsg = `Server-side error. Code: ${err.status}. Message: ${err.message}`;
-    }
+handleError(err: HttpErrorResponse) {
+  let errMsg = "";
 
-    return throwError(errMsg);
+  if (err.error instanceof ErrorEvent) {
+    errMsg = `Client-side error: ${err.error.message}`;
+  } else {
+    errMsg = `Server-side error. Code: ${err.status}. Message: ${err.message}`;
   }
+
+  return throwError(errMsg);
+}
 
 
 

@@ -47,13 +47,64 @@
   <div class="text-muted margin-t-20">
     <p>Subscribe to our newsletter so you don't miss any updates.</p>
   </div>
-  <form name="newsletter" method="POST" (ngSubmit)="onSubmit(email.value)" netlify>
-    <input #email name="email" type="email" placeholder="Email" class="" required>
+  <form name="contact" method="POST" (submit)="onSubmit()" netlify>
+    <input name="email" type="email" placeholder="Email" class="" required>
     <!-- <input type="hidden" name="form-name" value="newsletter" /> -->
     <!-- <button class="btn btn-custom  btn-rounded pe-7s-paper-plane" type="submit" (click)="onSubmit(email.value)"></button> -->
     <button type="submit" >Subscribe</button>
     <!-- <a href="javascript: void(0);" class="submit"><i class="pe-7s-paper-plane"></i></a> -->
   </form>
+
+
+
+
+
+
+
+
+
+  <!-- <form
+  (submit)="sendContact(contactForm)"
+  #contactForm="ngForm"
+  class="form"
+  name="contact"
+  >
+  <div class="u-margin-bottom-medium">
+    <h2 class="heading-secondary heading-secondary--red">
+      Let's get in touch
+    </h2>
+    <span class="form__subtitle">...and create something amazing!</span>
+  </div>
+  <div class="form__group">
+    <input
+    type="email"
+    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+    class="form__input"
+    id="email"
+    name="email"
+    [(ngModel)]="email"
+    />
+    <label for="email" class="form__label">Email Address</label>
+  </div>
+  <div class="form__group">
+    <button type="submit" class="btn btn--primary form__button">
+      Let's go <i class="fas fa-arrow-right"></i>
+    </button>
+  </div>
+</form> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 </div>
 </div>
