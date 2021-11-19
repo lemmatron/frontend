@@ -34,7 +34,24 @@ export class FooterComponent implements OnInit {
   console.log(x,body.toString());
   return false;
 }
+//   onSubmit(x){
+//     const body = new HttpParams()
+//     .set('form-name', 'newsletter')
+//     .append('email', x)
+//
+//     this.http.post('/', body.toString(), {
+//       headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+//     }
+//   );
+//   console.log(x,body.toString());
+//   return false;
+// }
 
+// onSubmit(x){
+//   // window.location.href='http://www.cnn.com'
+//   console.log("Hello", x);
+//   return false;
+// }
 
 windowScroll() {
   const navbar = document.getElementById('footer');

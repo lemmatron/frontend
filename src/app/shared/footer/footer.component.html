@@ -45,10 +45,11 @@
   <div class="text-muted margin-t-20">
     <p>Subscribe to our newsletter so you don't miss any updates.</p>
   </div>
-  <form name="newsletter" class="form subscribe text-right" netlify>
+  <form name="newsletter" class="form subscribe text-right" (ngSubmit)="onSubmit(email.value)">
     <input #email name="email" type="email" placeholder="Email" class="form-control" required>
     <input type="hidden" name="form-name" value="newsletter" />
-    <button class="btn btn-custom  btn-rounded pe-7s-paper-plane" type="submit" (click)="onSubmit(email.value)"></button>
+    <!-- <button class="btn btn-custom  btn-rounded pe-7s-paper-plane" type="submit" (click)="onSubmit(email.value)"></button> -->
+    <button type="submit" class="btn btn-custom  btn-rounded pe-7s-paper-plane">Purchase</button>
     <!-- <a href="javascript: void(0);" class="submit"><i class="pe-7s-paper-plane"></i></a> -->
   </form>
 

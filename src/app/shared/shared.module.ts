@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
+import { FormsModule } from '@angular/forms';
 
 import { ServicesComponent } from './services/services.component';
 import { PricingComponent } from './pricing/pricing.component';
@@ -18,7 +19,8 @@ import {HttpClientModule} from '@angular/common/http';
   imports: [
     CommonModule,
     ScrollToModule.forRoot(),
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   // tslint:disable-next-line: max-line-length
   exports: [ServicesComponent, PricingComponent, FeaturesComponent, TeamComponent, BlogComponent, ContactComponent, ScrollspyDirective, FooterComponent]
