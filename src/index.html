@@ -29,18 +29,27 @@
 </head>
 
 <body>
-  <!-- <form name=”newsletter” netlify netlify-honeypot=”bot-field” hidden>
-    <input type=”email” name=”email” />
-  </form> -->
 
+  <form name="newsletter" netlify netlify-honeypot="bot-field" hidden>
+    <input
+    type="email"
+    name="email"
+    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+    />
+  </form>
 
-  <form name="contact" netlify netlify-honeypot="bot-field" hidden>
-      <input
-        type="email"
-        name="email"
-        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
-      />
-</form>
+  <form name="contactus" netlify netlify-honeypot="bot-field" hidden>
+    <input name="name" type="text"/>
+
+    <input
+    type="email"
+    name="email"
+    pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
+    />
+    
+    <input name="subject" type="text"/>
+    <textarea name="comments" ></textarea>
+  </form>
 
 
   <app-root></app-root>
@@ -49,17 +58,17 @@
 
   <!-- <form name="test" method="POST" data-netlify="true">
   <p>
-    <label>Your Name: <input type="text" name="name" /></label>
-  </p>
-  <p>
-    <label>Your Email: <input type="email" name="email" /></label>
-  </p>
-  <p>
-    <label>Message: <textarea name="message"></textarea></label>
-  </p>
-  <p>
-    <button type="submit">Send</button>
-  </p>
+  <label>Your Name: <input type="text" name="name" /></label>
+</p>
+<p>
+<label>Your Email: <input type="email" name="email" /></label>
+</p>
+<p>
+<label>Message: <textarea name="message"></textarea></label>
+</p>
+<p>
+<button type="submit">Send</button>
+</p>
 </form> -->
 
 </body>

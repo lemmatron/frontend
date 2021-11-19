@@ -5,7 +5,8 @@ import {
   HttpErrorResponse,
   HttpParams,
 } from "@angular/common/http";
-import { Feedback } from "src/app/interface/feedback";
+import { Newsletter } from "src/app/interface/Newsletter";
+import { ContactUs } from "src/app/interface/ContactUs";
 import { Observable, throwError } from "rxjs";
 import { catchError } from "rxjs/operators";
 
@@ -15,13 +16,21 @@ import { catchError } from "rxjs/operators";
 export class NetlifyFormsService {
   constructor(private http: HttpClient) {}
 
-  submitFeedback(feedback: Feedback): Observable<string> {
+  submitContactUs(contactUs: ContactUs): Observable<string> {
     const entry = new HttpParams({
       fromObject: {
-        "form-name": "contact",
+        "form-name": "contactus",
       },
     });
+    return this.submitForm(entry);
+  }
 
+  submitNewsletter(newsletter: Newsletter): Observable<string> {
+    const entry = new HttpParams({
+      fromObject: {
+        "form-name": "newsletter",
+      },
+    });
     return this.submitForm(entry);
   }
 
