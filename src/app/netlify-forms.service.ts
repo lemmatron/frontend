@@ -29,6 +29,7 @@ export class NetlifyFormsService {
     const entry = new HttpParams({
       fromObject: {
         "form-name": "newsletter",
+        "email": newsletter.email
       },
     });
     return this.submitForm(entry);
