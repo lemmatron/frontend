@@ -30,6 +30,7 @@ export class FooterComponent implements OnInit {
     this.http.post('/', body.toString(), {
       headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
     }
+  ).subscribe(    res => {}
   );
   console.log(x,body.toString());
   return false;
