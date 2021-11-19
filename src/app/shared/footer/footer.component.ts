@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClientModule} from '@angular/common/http';
-import {HttpClient,HttpParams } from '@angular/common/http';
-
+import {HttpClient,HttpErrorResponse,HttpParams } from '@angular/common/http';
+import { Observable, throwError } from "rxjs";
+import { catchError } from "rxjs/operators";
 @Component({
   selector: 'app-footer',
   templateUrl: './footer.component.html',
@@ -14,6 +15,7 @@ export class FooterComponent implements OnInit {
   isVisible = false;
   cur_year = new Date().getFullYear();
   currentSection = 'footer';
+  success="";
 
   constructor(private http: HttpClient ) { }
 
@@ -27,14 +29,35 @@ export class FooterComponent implements OnInit {
     .set('form-name', 'newsletter')
     .append('email', x)
 
-    this.http.post('/', body.toString(), {
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+    this.http.post('/', body.toString(), {headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
     }
-  ).subscribe(    res => {}
-  );
+  )
+  // .pipe(
+  //     catchError(this.handleError('addHero', x))
+  //   );
+  .pipe(catchError(this.handleError));
   console.log(x,body.toString());
-  return false;
 }
+
+
+  handleError(err: HttpErrorResponse) {
+    let errMsg = "";
+
+    if (err.error instanceof ErrorEvent) {
+      errMsg = `Client-side error: ${err.error.message}`;
+    } else {
+      errMsg = `Server-side error. Code: ${err.status}. Message: ${err.message}`;
+    }
+
+    return throwError(errMsg);
+  }
+
+
+
+
+
+
+
 //   onSubmit(x){
 //     const body = new HttpParams()
 //     .set('form-name', 'newsletter')

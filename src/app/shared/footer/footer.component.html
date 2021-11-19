@@ -1,4 +1,5 @@
 <!--START FOOTER-->
+
 <footer class="footer" (window:scroll)="windowScroll()" id="footer">
   <div class="container">
     <div class="row">
@@ -40,12 +41,13 @@
 </div> -->
 </div>
 
+
 <div class="col-lg-3 margin-t-20">
   <h4>Subscribe</h4>
   <div class="text-muted margin-t-20">
     <p>Subscribe to our newsletter so you don't miss any updates.</p>
   </div>
-  <form name="newsletter" method="POST" action="/success" class="form subscribe" (ngSubmit)="onSubmit(email.value)">
+  <form name="newsletter" method="POST" (ngSubmit)="onSubmit(email.value)" netlify>
     <input #email name="email" type="email" placeholder="Email" class="" required>
     <!-- <input type="hidden" name="form-name" value="newsletter" /> -->
     <!-- <button class="btn btn-custom  btn-rounded pe-7s-paper-plane" type="submit" (click)="onSubmit(email.value)"></button> -->
